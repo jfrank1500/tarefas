@@ -1,1 +1,7 @@
 node_modules/
+app/backend/ormconfig.json
+ssl/chave_privada.pem
+ssl/chave_publica.pem
+logs/erro.log
+logs/tudo.log
+www
