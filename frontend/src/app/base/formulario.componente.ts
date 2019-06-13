@@ -53,7 +53,6 @@ export abstract class Formulario<T extends IEntidade> {
   get filtro() { return { 'pagina': this.pagina }; }
 
   aoPaginar(evento: any) {
-    console.log(evento);
     this.pagina = evento.page;
     this.atualizar();
   }

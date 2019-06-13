@@ -35,12 +35,25 @@ export const SEMENTE_JWT = 'JSON-WEB-TOKEN'; // Assinatura para o JWT
 export const BANCO_TIPO = 'sqlite3'; // sqlite3 ou mysql 
 ```
 
+### Compilar frontend
+
+```bash
+# Instalar o Angular-CLI
+$ npm i -g @angular/cli
+# Ir para a pasta do frontend escrito em angular
+$ cd frontend
+# Instalar dependencias
+$ npm i
+# Construir a pasta www
+$ ng build --watch
+```
+
 ## Compilar backend
 ```bash
 # Ir para a pasta do backend
 $ cd backend
 # Instalar dependencias
-$ npm install
+$ npm i
 # Iniciar servidor de Backend
 $ npm start
 ```
@@ -77,18 +90,6 @@ $ npm start
 ```bash
 # Gerar a chaves do servidor https
 $ openssl req -x509 -newkey rsa:2048 -keyout chave_privada.pem -out chave_publica.pem -days 365
-```
-### Recriar pasta www a partir da pasta de frontend
-
-```bash
-# Instalar o Angular-CLI
-$ npm install -g @angular/cli
-# Ir para a pasta do frontend escrito em angular
-$ cd frontend
-# Instalar dependencias
-$ npm i
-# Construir a pasta www
-$ ng build
 ```
 
 ## Principais frameworks usados no sistema
