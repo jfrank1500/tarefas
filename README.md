@@ -35,7 +35,7 @@ export const SEMENTE_JWT = 'JSON-WEB-TOKEN'; // Assinatura para o JWT
 export const BANCO_TIPO = 'sqlite3'; // sqlite3 ou mysql 
 ```
 
-### Compilar frontend
+## Compilar frontend
 
 ```bash
 # Instalar o Angular-CLI
