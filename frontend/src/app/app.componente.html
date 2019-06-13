@@ -1,0 +1,19 @@
+<p-toolbar>
+  <div class="ui-g">
+    <div class="ui-g-8">
+      <a routerLink="/">
+        <img src="img/logo.png">
+      </a>
+      <a target="_blank" href="/api-docs">API swagger</a>
+    </div>
+  </div>
+</p-toolbar>
+<router-outlet></router-outlet>
+<ng-http-loader backgroundColor="#ff0000" spinner="sk-chasing-dots"></ng-http-loader>
+<p-toast></p-toast>
+<p-confirmDialog icon="fa fa-question-circle" width="425" appendTo="body" #cd>
+  <p-footer>
+    <button type="button" pButton icon="fa fa-thumbs-down" label="Não" (click)="cd.reject()"></button>
+    <button type="button" pButton icon="fa fa-thumbs-up" label="Sim" (click)="cd.accept()"></button>
+  </p-footer>
+</p-confirmDialog>

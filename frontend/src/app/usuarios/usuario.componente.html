@@ -1,0 +1,43 @@
+<!-- Lista de usuarios -->
+<app-tabela titulo="Usuários" [lista]="lista" [colunas]="colunas" [registrosPorPagina]="registrosPorPagina"
+  [totalRegistros]="totalRegistros" (novo_click)="novo()" (atualizar_click)="atualizar()" (exportar_click)="exportar()"
+  (editar_click)="editar($event)" (ao_paginar_evento)="aoPaginar($event)">
+</app-tabela>
+<button (click)="voltar()" label="Voltar" type="button" pButton icon="fa fa-arrow-circle-left" class="ui-button-danger"></button>
+<!-- Dialogo de edicao -->
+<p-dialog [header]="titulo" [(visible)]="visivel" [responsive]="true" showEffect="fade" [modal]="true" appendTo="body">
+  <div class="ui-g" *ngIf="modelo" style="width:100%">
+    <p-tabView class="larguraMaxima">
+      <p-tabPanel header="Usuário">
+        <div class="ui-g">
+          <div class="ui-g-4">
+            <label for="id">ID</label>
+          </div>
+          <div class="ui-g-8">{{modelo.id}}</div>
+          <div class="ui-g-4"><label for="id">Login</label></div>
+          <div class="ui-g-8"><input pInputText id="login" [(ngModel)]="modelo.login" required style="width:100%" />
+          </div>
+          <div class="ui-g-4"><label for="id">Nome</label></div>
+          <div class="ui-g-8"><input pInputText id="nome" [(ngModel)]="modelo.nome" required style="width:100%" />
+          </div>
+          <div class="ui-g-4"><label for="id">Perfil</label></div>
+          <div class="ui-g-8">
+            <p-dropdown [options]="perfis" [(ngModel)]="modelo.perfil" [autoWidth]="false" [style]="{'width': '100%'}">
+            </p-dropdown>
+          </div>
+          <div class="ui-g-4"><label for="id">Senha</label></div>
+          <div class="ui-g-8"><input pPassword type="password" id="senha" [(ngModel)]="novasenha"
+              promptLabel="Entre senha" weakLabel="Segurança fraca" mediumLabel="Segurança média"
+              strongLabel="Segurança forte" style="width:100%" />
+          </div>
+        </div>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button (click)="gravar()" label="Gravar" type="button" pButton icon="fa fa-check"
+            class="ui-button-success"></button>
+          <button *ngIf="apagavel" (click)="apagar()" label="Apagar" type="button" pButton icon="fa fa-trash"
+            class="ui-button-danger"></button>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</p-dialog>

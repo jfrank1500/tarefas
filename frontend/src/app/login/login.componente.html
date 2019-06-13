@@ -1,0 +1,23 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-panel header="Tarefas">
+  <div class="ui-g">
+    <div class="ui-g-8">
+      <div class="ui-g-4">
+        <label for="id">Usuário</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText [(ngModel)]="usuario" required style="width:100%" />
+      </div>
+      <div class="ui-g-4">
+        <label for="id">Senha</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText [(ngModel)]="senha" (keyup.enter)="entrar()" required type="password" style="width:100%">
+      </div>
+    </div>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button (click)="entrar()" label="Entrar" type="button" pButton icon="fa fa-key"
+        class="ui-button-success"></button>
+    </div>
+  </div>
+</p-panel>

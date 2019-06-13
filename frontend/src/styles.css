@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.requerido {
+    color: black;
+    font-weight: bold;
+}
+
+.ui-datepicker {
+    z-index: 100000 !important;
+}
+
+.ui-panel-title{
+    font-size: 1.5em;
+}

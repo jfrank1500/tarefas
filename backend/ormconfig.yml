@@ -1,0 +1,36 @@
+# conexao MySQL
+mysql:
+    type: "mysql"
+    host: "localhost"
+    port: 3306
+    username: "tarefas"
+    password: "tarefas"
+    database: "tarefas"
+    logging: true
+    synchronize: true
+    timezone: -03:00
+    entities:
+      - "src/app/entidades/**/*.ts"
+    migrations:
+      - "src/app/migracoes/**/*.ts"
+    cli:
+      entitiesDir: "src/app/entidades"
+      migrationsDir: "src/app/migracoes"
+      subscribersDir: "src/app/assinantes"
+
+# conexao SQLite
+sqlite3: 
+    type: "sqlite"
+    username: "tarefas"
+    password: "tarefas"
+    database: "tarefas.sqlite3"
+    logging: true
+    synchronize: true
+    entities:
+      - "src/app/entidades/**/*.ts"
+    migrations:
+      - "src/app/migracoes/**/*.ts"
+    cli:
+      entitiesDir: "src/app/entidades"
+      migrationsDir: "src/app/migracoes"
+      subscribersDir: "src/app/assinantes"

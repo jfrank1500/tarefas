@@ -1,0 +1,361 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Lista de tarefas
+  description: API REST para o sistema de lista de tarefas
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+host: localhost:4200
+basePath: "/api"
+tags:
+- name: Autenticação
+  description: Autenticação do usuário
+- name: Usuários
+  description: Gerenciamento de usuários
+- name: Projetos
+  description: Gerenciamento de projetos
+- name: Tarefas
+  description: Gerenciamento de tarefas
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+--- ===========================================================================
+--- Ver https://editor.swagger.io/
+--- Ver https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/
+--- Ver https://www.json2yaml.com/
+--- ===========================================================================
+  "/usuarios/entrar":
+    post:
+      tags:
+      - Autenticação
+      summary: Autenticar-se no sistema
+      parameters:
+      - name: usuario
+        in: body
+        description: Usuário que queremos autenticar.
+        schema:
+          "$ref": "#/definitions/Autenticacao"
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Usuário autenticado.
+          schema:
+            "$ref": "#/definitions/Usuario"
+--- ===========================================================================
+  "/usuarios/sair":
+    post:
+      tags:
+      - Autenticação
+      summary: Sair do sistema
+      parameters: []
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Usuário saiu do sistema
+--- ===========================================================================
+  "/usuarios/quem":
+    get:
+      tags:
+      - Autenticação
+      summary: Quem sou eu? Precisa estar autenticado.
+      parameters: []
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Usuário do sistema
+        '401':
+          description: Usuário não autenticado
+--- ===========================================================================
+  "/usuarios":
+    get:
+      tags:
+      - Usuários
+      summary: Localizar todos os usuários. Somente administradores.
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: "array"
+            items:
+              "$ref": "#/definitions/Usuario"
+    post:
+      tags:
+      - Usuários
+      summary: Criar um novo usuário no sistema. Somente administradores.
+      parameters:
+      - name: usuario
+        in: body
+        description: Usuário que queremos criar
+        schema:
+          "$ref": "#/definitions/Usuario"
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Novo usuário criado.
+          schema:
+            "$ref": "#/definitions/Usuario"
+  "/usuarios/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID do usuário que queremos encontrar.
+      type: integer
+    get:
+      tags:
+      - Usuários
+      summary: Retorna o usuário com o ID fornecido. Somente administradores.
+      responses:
+        '200':
+          description: Usuário encontrado.
+          schema:
+            "$ref": "#/definitions/Usuario"
+        '404':
+          description: Usuário não encontrado.
+    delete:
+      summary: Apaga um usuário pelo ID. Somente administradores.
+      tags:
+      - Usuários
+      responses:
+        '200':
+          description: Usuário apagado.
+          schema:
+            "$ref": "#/definitions/Usuario"
+        '401':
+          description: Usuário não autorizado.
+    put:
+      summary: Atualiza usuário pelo ID. Somente administradores.
+      tags:
+      - Usuários
+      parameters:
+      - name: usuario
+        in: body
+        description: Novos dados do usuário.
+        schema:
+          "$ref": "#/definitions/Usuario"
+      responses:
+        '200':
+          description: Usuário atualizado.
+          schema:
+            "$ref": "#/definitions/Usuario"
+
+--- ===========================================================================
+  "/projetos":
+    get:
+      tags:
+      - Projetos
+      summary: Localizar todos os projetos.
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: "array"
+            items:
+              "$ref": "#/definitions/Projeto"
+    post:
+      tags:
+      - Projetos
+      summary: Criar um novo projeto no sistema. Precisa estar autenticado.
+      parameters:
+      - name: projeto
+        in: body
+        description: Projeto que queremos criar.
+        schema:
+          "$ref": "#/definitions/Projeto"
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Novo projeto criado.
+          schema:
+            "$ref": "#/definitions/Projeto"
+  "/projetos/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID do projeto que queremos encontrar.
+      type: integer
+    get:
+      tags:
+      - Projetos
+      summary: Retorna o projeto com o ID fornecido.
+      responses:
+        '200':
+          description: Projeto encontrado.
+          schema:
+            "$ref": "#/definitions/Projeto"
+        '404':
+          description: Projeto não encontrado.
+    delete:
+      summary: Apaga um projeto pelo ID. Precisa estar autenticado.
+      tags:
+      - Projetos
+      responses:
+        '200':
+          description: Projeto apagado.
+          schema:
+            "$ref": "#/definitions/Projeto"
+        '401':
+          description: Usuário não autorizado.
+    put:
+      summary: Atualiza projeto pelo ID. Precisa estar autenticado.
+      tags:
+      - Projetos
+      parameters:
+      - name: projeto
+        in: body
+        description: Novos dados do projeto.
+        schema:
+          "$ref": "#/definitions/Projeto"
+      responses:
+        '200':
+          description: Projeto atualizado.
+          schema:
+            "$ref": "#/definitions/Projeto"
+--- ===========================================================================
+  "/tarefas":
+    get:
+      tags:
+      - Tarefas
+      summary: Localizar todas as tarefas.
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: "array"
+            items:
+              "$ref": "#/definitions/Tarefa"
+    post:
+      tags:
+      - Tarefas
+      summary: Criar uma nova tarefa no sistema. Precisa estar autenticado.
+      parameters:
+      - name: tarefa
+        in: body
+        description: Usuário que queremos criar.
+        schema:
+          "$ref": "#/definitions/Tarefa"
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Nova tarefa criada.
+          schema:
+            "$ref": "#/definitions/Tarefa"
+  "/tarefas/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID da tarefa que queremos encontrar.
+      type: integer
+    get:
+      tags:
+      - Tarefas
+      summary: Retorna a tarefa com o ID fornecido.
+      responses:
+        '200':
+          description: Tarefa encontrada.
+          schema:
+            "$ref": "#/definitions/Tarefa"
+        '404':
+          description: Tarefa não encontrada.
+    delete:
+      summary: Apaga uma tarefa pelo ID. Precisa estar autenticado.
+      tags:
+      - Tarefas
+      responses:
+        '200':
+          description: Tarefa apagada.
+          schema:
+            "$ref": "#/definitions/Tarefa"
+        '401':
+          description: Usuário não autorizado.
+    put:
+      summary: Atualiza tarefa pelo ID. Precisa estar autenticado.
+      tags:
+      - Tarefas
+      parameters:
+      - name: tarefa
+        in: body
+        description: Novos dados da tarefa.
+        schema:
+          "$ref": "#/definitions/Tarefa"
+      responses:
+        '200':
+          description: Tarefa atualizada.
+          schema:
+            "$ref": "#/definitions/Tarefa"
+--- ===========================================================================
+definitions:
+  Autenticacao:
+    type: "object"
+    required:
+    - login
+    - senha
+    properties:
+      login:
+        type: string
+        uniqueItems: true
+      senha:
+        type: string
+  Usuario:
+    type: "object"
+    required:
+    - id
+    - login
+    - senha
+    - perfil
+    properties:
+      id:
+        type: integer
+        uniqueItems: true
+      login:
+        type: string
+        uniqueItems: true
+      senha:
+        type: string
+      perfil:
+        type: string
+  Projeto:
+    type: "object"
+    required:
+    - id
+    - nome
+    properties:
+      id:
+        type: integer
+        uniqueItems: true
+      nome:
+        type: string
+        uniqueItems: true
+  Tarefa:
+    type: "object"
+    required:
+    - id
+    - descricao
+    - previsao
+    - usuario
+    properties:
+      id:
+        type: integer
+        uniqueItems: true
+      descricao:
+        type: string
+        uniqueItems: true
+      previsao:
+        type: string
+      usuario:
+        "$ref": "#/definitions/Usuario"
+      projeto:
+        "$ref": "#/definitions/Projeto"

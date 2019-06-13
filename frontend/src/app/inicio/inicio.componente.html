@@ -1,0 +1,10 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-panel header="Início">
+  <button pButton type="button" label="Usuários" (click)="gerenciarUsuarios()" class="ui-button-primary"
+    icon='fa fa-users'></button> ::
+  <button pButton type="button" label="Projetos" (click)="gerenciarProjetos()" class="ui-button-primary"
+    icon='fa fa-map'></button> ::
+  <button pButton type="button" label="Tarefas" (click)="gerenciarTarefas()" class="ui-button-primary"
+    icon='fa fa-tasks'></button> ::
+  <button pButton type="button" label="Sair" (click)="sair()" class="ui-button-danger" icon='fa fa-times'></button>
+</p-panel>
