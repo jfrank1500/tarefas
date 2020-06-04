@@ -1,6 +1,6 @@
 # Lista de Tarefas
 
-- Autor: Frank Viana (jfrank1500@gmail.com)
+- Autor: Frank
 - Ano: 2019
 - [MIT](https://opensource.org/licenses/MIT)
 
